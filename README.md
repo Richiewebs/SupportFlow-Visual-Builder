@@ -18,7 +18,7 @@ By implementing **Drag-and-Drop Repositioning**, we empower the user to grab nod
 
 ## Phase 1: Design System
 
-> **[INSERT YOUR FIGMA/PENPOT LINK HERE]**
+> (https://www.figma.com/design/Ot572JCcKuKCDOCOBGBNe7/Untitled?node-id=0-1&t=Svm76WCwNJgfYfhT-1)
 *Note: Ensure your design link allows "Anyone with the link can view". The design system includes mockups for the Canvas, Node Cards, Connectors, and Color Semantics.*
 
 ## Getting Started
