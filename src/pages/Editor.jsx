@@ -6,10 +6,13 @@ const Editor = ({
   nodes, 
   selectedNodeId, 
   handleNodeTextChange, 
+  handleOptionLabelChange, // Add this prop
   handleDragStart, 
   handleMouseMove, 
   handleMouseUp,
-  setSelectedNodeId
+  setSelectedNodeId,
+  addNode,
+  deleteNode
 }) => {
   return (
     <div 
@@ -33,7 +36,10 @@ const Editor = ({
           isSelected={selectedNodeId === node.id}
           onSelect={setSelectedNodeId}
           onChange={handleNodeTextChange}
+          onOptionLabelChange={handleOptionLabelChange} // Pass the handler
           onDragStart={handleDragStart}
+          addNode={addNode}
+          deleteNode={deleteNode}
         />
       ))}
     </div>

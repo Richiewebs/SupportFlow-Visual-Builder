@@ -16,6 +16,16 @@ A flowchart where nodes are anchored in place is visually restrictive. As manage
 
 By implementing **Drag-and-Drop Repositioning**, we empower the user to grab nodes and freely organize them on the canvas. The engine dynamically recalculates SVG vector lines in real-time. This entirely transforms the tool from a static renderer into a _true WYSIWYG Editor_, offering massive business value by improving workflow efficiency and visual clarity for the support managers building the bots.
 
+## Implemented Features
+
+### Dynamic Node Creation and Deletion
+
+This feature allows users to add and remove nodes directly from the visual editor. When a node is selected, "+" and "-" buttons appear, allowing for the creation of new child nodes or the deletion of the current node (the root "start" node cannot be deleted). This functionality streamlines the workflow for building and refining conversation flows, empowering users to rapidly prototype and iterate on their chatbot logic.
+
+### Editable Option Labels
+
+This feature enables users to edit the text of the options that branch out from a question node. When a node is selected in the editor, the option labels become editable input fields. This provides an intuitive and direct way to customize the choices presented to the user in the chatbot flow, making the conversation design process more efficient.
+
 ## Phase 1: Design System
 
 > (https://www.figma.com/design/Ot572JCcKuKCDOCOBGBNe7/Untitled?node-id=0-1&t=Svm76WCwNJgfYfhT-1)

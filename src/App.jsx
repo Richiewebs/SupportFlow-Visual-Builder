@@ -46,6 +46,71 @@ function App() {
     setNodes(nodes.map(node => node.id === id ? { ...node, text: newText } : node));
   };
 
+  const handleOptionLabelChange = (nodeId, optionIndex, newLabel) => {
+    setNodes(nodes.map(node => {
+      if (node.id === nodeId) {
+        const newOptions = [...node.options];
+        newOptions[optionIndex].label = newLabel;
+        return { ...node, options: newOptions };
+      }
+      return node;
+    }));
+  };
+  
+  const addNode = (parentId) => {
+    const parentNode = nodes.find(n => n.id === parentId);
+    if (!parentNode) return;
+  
+    const newNodeId = `node_${Date.now()}`;
+    const newNode = {
+      id: newNodeId,
+      text: "New Question",
+      type: "question",
+      position: {
+        x: parentNode.position.x + 250,
+        y: parentNode.position.y
+      },
+      options: []
+    };
+  
+    const newNodes = [...nodes, newNode];
+  
+    const updatedNodes = newNodes.map(n => {
+      if (n.id === parentId) {
+        return {
+          ...n,
+          options: [
+            ...n.options,
+            { label: "New Option", nextId: newNodeId }
+          ]
+        };
+      }
+      return n;
+    });
+  
+    setNodes(updatedNodes);
+  };
+  
+  const deleteNode = (nodeId) => {
+    // Prevent deleting the start node
+    if (nodeId === 'start') {
+        alert("Cannot delete the start node.");
+        return;
+    }
+  
+    // Remove the node from the nodes list
+    let updatedNodes = nodes.filter(n => n.id !== nodeId);
+  
+    // Remove any options that point to the deleted node
+    updatedNodes = updatedNodes.map(n => ({
+        ...n,
+        options: n.options ? n.options.filter(opt => opt.nextId !== nodeId) : []
+    }));
+  
+    setNodes(updatedNodes);
+    setSelectedNodeId(null); // Deselect the node after deleting it
+  };
+
   return (
     <>
       <div className="top-bar">
@@ -76,10 +141,13 @@ function App() {
           nodes={nodes}
           selectedNodeId={selectedNodeId}
           handleNodeTextChange={handleNodeTextChange}
+          handleOptionLabelChange={handleOptionLabelChange} // Pass the new handler
           handleDragStart={handleDragStart}
           handleMouseMove={handleMouseMove}
           handleMouseUp={handleMouseUp}
           setSelectedNodeId={setSelectedNodeId}
+          addNode={addNode}
+          deleteNode={deleteNode}
         />
       ) : (
         <Preview nodes={nodes} />
